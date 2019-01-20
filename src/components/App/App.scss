@@ -5,6 +5,9 @@
     background: $catskill-white;
     color: $endeavour;
     overflow: hidden;
-    padding: 0 1rem;
+    padding: 0 $vertical-spacing;
+    h1 {
+      margin: $horizontal-spacing 0;
+    }
   }
 }

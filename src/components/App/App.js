@@ -6,7 +6,7 @@ import Carousel from '../Carousel/Carousel';
 // TODO: Move this to a .ENV file
 const KEY = '9656065-a4094594c34f9ac14c7fc4c39';
 
-// Pixabay API urk
+// Pixabay API url
 const URL = `https://pixabay.com/api/?key=${KEY}&q=beautiful+landscape&image_type=photo&per_page=6`;
 
 class App extends Component {
@@ -37,23 +37,36 @@ class App extends Component {
         });
       },
     );
+
+    // Reset slides when window is resized
+    // TODO: Add debounce, remove event listener on component unmount
+    window.addEventListener('resize', this.handleResize);
   }
 
   slideNext = () => {
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex + 1,
       translateX: prevState.translateX + -(this.slideWidth()),
-    }))
+      // TODO: check if currentIndex is equal to slide length and disable button
+    }));
   }
 
   slidePrev = () => {
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex - 1,
       translateX: prevState.translateX + this.slideWidth(),
-    }))
+      // TODO: check if currentIndex is equal to 0 and disable button
+    }));
   }
 
   slideWidth = () => document.querySelector('.Carousel__item').clientWidth;
+
+  handleResize = () => {
+    this.setState({
+      currentIndex: 0,
+      translateX: 0,
+    });
+  }
 
   render() {
 
