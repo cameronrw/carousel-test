@@ -1,0 +1,10 @@
+@import "./../../styles/variables";
+
+.App {
+  &__header {
+    background: $catskill-white;
+    color: $endeavour;
+    overflow: hidden;
+    padding: 0 1rem;
+  }
+}
