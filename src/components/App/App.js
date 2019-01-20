@@ -15,6 +15,8 @@ class App extends Component {
     error: null,
     isLoaded: false,
     images: [],
+    currentIndex: 0,
+    translateX: 0,
   }
 
   componentDidMount() {
@@ -37,10 +39,26 @@ class App extends Component {
     );
   }
 
+  slideNext = () => {
+    this.setState(prevState => ({
+      currentIndex: prevState.currentIndex + 1,
+      translateX: prevState.translateX + -(this.slideWidth()),
+    }))
+  }
+
+  slidePrev = () => {
+    this.setState(prevState => ({
+      currentIndex: prevState.currentIndex - 1,
+      translateX: prevState.translateX + this.slideWidth(),
+    }))
+  }
+
+  slideWidth = () => document.querySelector('.Carousel__item').clientWidth;
+
   render() {
 
     const {
-      error, isLoaded, images,
+      error, isLoaded, images, translateX,
     } = this.state;
 
     if (error) {
@@ -56,7 +74,12 @@ class App extends Component {
         <header className="App__header">
           <h1>Carousel Test</h1>
         </header>
-        <Carousel images={images} />
+        <Carousel
+          images={images}
+          slideNext={this.slideNext}
+          slidePrev={this.slidePrev}
+          translateX={translateX}
+        />
       </div>
     );
   }
