@@ -17,10 +17,8 @@
     "extends": "react-app"
   },
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "last 2 versions",
+    "> 1%"
   ],
   "devDependencies": {
     "node-sass": "^4.11.0"
